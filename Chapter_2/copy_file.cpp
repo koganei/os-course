@@ -32,6 +32,11 @@ int main() {
     getDestination(dest);
     destinationStream.open(dest, ios::out);
 
+    if(!destinationStream) {
+        perror("Couldn't open file for writing");
+        return 1;
+    }
+
     while(!sourceStream.eof()) {
         sourceStream >> noskipws >> data;
         destinationStream << data;
